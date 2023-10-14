@@ -1,0 +1,157 @@
+﻿@model IEnumerable<MyClass.Model.Categories>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="wrapper">
+    <!-- Main Sidebar Container -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong class="text-info">
+                                DANH MỤC LOẠI SẢN PHẨM
+                            </strong>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a href="@Url.Action("Create", "Category")" class="btn btn-success">
+                                <i class="fa fa-plus"></i>
+                                Thêm
+                            </a>
+                            <a href="@Url.Action("Trash", "Category")" class="btn btn-success">
+                                <i class="fa fa-trash"></i>
+                                Thêm
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>Mã</th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Slug)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ParentId)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Order)
+                            </th>
+
+                            @*<th>
+            @Html.DisplayNameFor(model => model.MetaDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MetaKey)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateAt)
+        </th>*@
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+                            <th>Hành động</th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Slug)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ParentId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Order)
+                                </td>
+                                @* <td>
+            @Html.DisplayFor(modelItem => item.MetaDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MetaKey)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateAt)
+        </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+
+                                <td>
+                                    @if (item.Status == 1)
+                                    {
+                                        <a href="@Url.Action("Status", "Category", new {id = item.Id})" class="btn btn-success"><i class="fa fa-toggle-on"></i></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Status", "Category", new {id = item.Id})" class="btn btn-danger"><i class="fa fa-toggle-off"></i></a>
+
+                                    }
+                                    <a href="@Url.Action("Edit", "Category", new {id = item.Id})" class="btn btn-info"><i class="fa fa-edit"></i></a>
+                                    <a href="@Url.Action("Delete", "Category", new {id = item.Id})" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                    <a href="@Url.Action("Details", "Category", new {id = item.Id})" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </table>
+
+                </div> <!-- /.card-footer-->
+            </div><!-- /.card -->
+        </section><!-- /.content -->
+    </div> <!-- /.content-wrapper -->
+</div>
